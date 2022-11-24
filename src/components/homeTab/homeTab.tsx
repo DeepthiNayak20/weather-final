@@ -74,7 +74,6 @@ const HomeTab = ({ date }: any) => {
         remId = i
       }
     }
-    console.log('remId', remId)
     favourites.splice(remId, 1)
     console.log('new remId', favourites)
     localStorage.setItem('fav', JSON.stringify(favourites))
