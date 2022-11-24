@@ -96,6 +96,7 @@ const Favourite = () => {
                     className="searchMobileImg"
                     onClick={() => {
                       dispatch(showModal())
+                      navigate('/')
                     }}
                   />
                 </div>
