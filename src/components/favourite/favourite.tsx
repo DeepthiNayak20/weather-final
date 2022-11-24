@@ -163,7 +163,9 @@ const Favourite = () => {
                     break
                 }
                 const favHandler = () => {
-                  setSearch(favPlace.location.city)
+                  setSearch(
+                    favPlace && favPlace.location && favPlace.location.city,
+                  )
                   setSearced(true)
                 }
                 return (
@@ -177,7 +179,13 @@ const Favourite = () => {
                     <div className="favBody">
                       <div className="favrouriteMobile">
                         <div className="state">
-                          {favPlace.location.city}, {favPlace.location.country}
+                          {favPlace &&
+                            favPlace.location &&
+                            favPlace.location.city}
+                          ,{' '}
+                          {favPlace &&
+                            favPlace.location &&
+                            favPlace.location.country}
                         </div>
                         <div className="threeElements">
                           <div className="elementOne">
@@ -188,11 +196,18 @@ const Favourite = () => {
                             />
                           </div>
                           <div className="elementTwo">
-                            {favPlace.current_observation.condition.temperature}
+                            {favPlace &&
+                              favPlace.condition &&
+                              favPlace.current_observation &&
+                              favPlace.current_observation.condition
+                                .temperature}
                             <span className="deg">&deg;F</span>
                           </div>
                           <div className="elementThree">
-                            {favPlace.current_observation.condition.text}
+                            {favPlace &&
+                              favPlace.condition &&
+                              favPlace.current_observation &&
+                              favPlace.current_observation.condition.text}
                           </div>
                         </div>
                       </div>

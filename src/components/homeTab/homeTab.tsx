@@ -33,7 +33,13 @@ const HomeTab = ({ date }: any) => {
   const addFav = () => {
     const arr: any[] = []
     previousData.map((user: any, i: number) => {
-      if (user.location.woeid === Data.location.woeid) {
+      if (
+        user &&
+        user.location &&
+        user.location.woeid === Data &&
+        Data.location &&
+        Data.location.woeid
+      ) {
         arr.push('exists')
       }
     })
@@ -53,7 +59,27 @@ const HomeTab = ({ date }: any) => {
   const handleChange = () => {
     setChecked(!checked)
   }
-
+  const removeItem = (location: any) => {
+    console.log('abvcxz', location.location.woeid)
+    const favourites = JSON.parse(localStorage.getItem('fav') || '[]')
+    console.log('woeid', favourites)
+    let remId = -1
+    for (let i = 0; i < favourites.length; i++) {
+      //console.log('id', favourites[i].location.woeid, location.location.woeid)
+      if (
+        favourites[i] &&
+        favourites[i].location &&
+        favourites[i].location.woeid === location.location.woeid
+      ) {
+        remId = i
+      }
+    }
+    console.log('remId', remId)
+    favourites.splice(remId, 1)
+    console.log('new remId', favourites)
+    localStorage.setItem('fav', JSON.stringify(favourites))
+    window.location.reload()
+  }
   const onDelete = () => {}
   let icon = ''
   switch (
@@ -156,7 +182,7 @@ const HomeTab = ({ date }: any) => {
           <div
             className="addFav"
             onClick={() => {
-              h()
+              removeItem(Data)
             }}
           >
             <div className="favImg">

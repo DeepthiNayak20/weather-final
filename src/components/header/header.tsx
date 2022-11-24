@@ -24,8 +24,8 @@ const Header = () => {
     const searchItem = JSON.parse(localStorage.getItem('searchTerm') || '[]')
     setSearch(searchItem)
   }, [])
-
-  const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${search}&format=json&u=f`
+  const searchValue = search || 'udupi'
+  const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${searchValue}&format=json&u=f`
 
   const options = {
     method: 'GET',
