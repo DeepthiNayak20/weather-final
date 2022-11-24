@@ -21,7 +21,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const searchItem = JSON.parse(localStorage.getItem('searchTerm') || 'udupi')
+    const searchItem = JSON.parse(localStorage.getItem('searchTerm') || '[]')
     setSearch(searchItem)
   }, [])
 
@@ -64,9 +64,9 @@ const Header = () => {
       if (arr.includes('exists')) {
         //alert("already exists");
       } else {
-        // if (search !== '/') {
-        var letters = /^[\w\-\s]+$/
-        if (search.match(letters)) {
+        if (search !== '') {
+          // var letters = /^[\w\-\s]+$/
+          // if (search.match(letters)) {
           fetchedData && searchData.push(fetchedData)
           localStorage.setItem('search', JSON.stringify(searchData))
         } else {
