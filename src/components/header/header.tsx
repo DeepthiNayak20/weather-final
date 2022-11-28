@@ -2,18 +2,16 @@ import { useEffect, useState } from 'react'
 import './header.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { weather } from '../../redux/weatherSlice'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { closeModal, showModal } from '../../redux/modalSlice'
 
 const Header = () => {
   const [fetchedData, setFetchedData] = useState<any>([])
-  const [search, setSearch] = useState('udupi')
+  const [search, setSearch] = useState('')
   const [nav, setNav] = useState(false)
-  const [mobileSearch, setMobileSearch] = useState(false)
-  const navigate = useNavigate()
 
   const searchData = JSON.parse(localStorage.getItem('search') || '[]')
-  console.log('search', searchData)
+  // console.log('search', searchData)
 
   if (searchData === undefined) {
     localStorage.setItem('search', '[]')
@@ -24,13 +22,13 @@ const Header = () => {
     const searchItem = JSON.parse(localStorage.getItem('searchTerm') || '[]')
     setSearch(searchItem)
   }, [])
-  const searchValue = search || 'udupi'
+  const searchValue = search
   const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${searchValue}&format=json&u=f`
 
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '40adfff86amshae63704e562067ap186c63jsnff5b3c3286a4',
+      'X-RapidAPI-Key': 'fd6b1ba7ddmsh4899d92a76be0d0p17b258jsn5bf69a08eb5a',
       'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com',
     },
   }
@@ -59,8 +57,8 @@ const Header = () => {
           arr.push('exists')
         }
       })
-      console.log('arr', arr)
-      console.log('asasas', searchData.message)
+      // console.log('arr', arr)
+      // console.log('asasas', searchData.message)
       if (arr.includes('exists')) {
         //alert("already exists");
       } else {
@@ -81,6 +79,7 @@ const Header = () => {
   useEffect(() => {
     dispatch(weather(fetchedData))
     recentSearchHandler()
+    console.log('fetchedData Data', fetchedData)
   }, [fetchedData])
 
   useEffect(() => {
@@ -89,7 +88,7 @@ const Header = () => {
 
   const modal = useSelector((state: any) => state.modalStatus)
 
-  console.log(modal.value)
+  // console.log(modal.value)
 
   return (
     <div>
@@ -104,7 +103,11 @@ const Header = () => {
             onSubmit={(e: any) => {
               e.preventDefault()
               setSearch(e.target.searchIP.value)
-              localStorage.setItem('searchTerm', JSON.stringify(search))
+              localStorage.setItem(
+                'searchTerm',
+
+                JSON.stringify(e.target.searchIP.value),
+              )
             }}
           >
             <input
@@ -210,6 +213,10 @@ const Header = () => {
                   onSubmit={(e: any) => {
                     e.preventDefault()
                     setSearch(e.target.searchIn.value)
+                    localStorage.setItem(
+                      'searchTerm',
+                      JSON.stringify(e.target.searchIn.value),
+                    )
                     dispatch(closeModal())
                   }}
                 >

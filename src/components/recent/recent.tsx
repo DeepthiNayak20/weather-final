@@ -21,7 +21,9 @@ const Recent = () => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '40adfff86amshae63704e562067ap186c63jsnff5b3c3286a4',
+      // 'X-RapidAPI-Key': '40adfff86amshae63704e562067ap186c63jsnff5b3c3286a4',
+      'X-RapidAPI-Key': 'e690f1a22emshe244e3ff1231104p1cdd58jsndadb2803a981',
+      //e690f1a22emshe244e3ff1231104p1cdd58jsndadb2803a981
       'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com',
     },
   }
@@ -98,7 +100,7 @@ const Recent = () => {
             </div>
             <div className="favColumnReverse">
               {' '}
-              {recentSearchData.map((searchData: any, i: any) => {
+              {recentSearchData.reverse().map((searchData: any, i: any) => {
                 let icon = ''
                 switch (
                   searchData &&

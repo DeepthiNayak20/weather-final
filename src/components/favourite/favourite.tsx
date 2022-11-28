@@ -20,7 +20,7 @@ const Favourite = () => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '40adfff86amshae63704e562067ap186c63jsnff5b3c3286a4',
+      'X-RapidAPI-Key': '677dc0bde4msh0ae337e5d486c6bp128016jsnddd26fe7b271',
       'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com',
     },
   }
@@ -51,7 +51,7 @@ const Favourite = () => {
     favourites.splice(remId, 1)
     console.log('new remId', favourites)
     localStorage.setItem('fav', JSON.stringify(favourites))
-    window.location.reload()
+    // window.location.reload()
   }
   useEffect(() => {
     Searced && dispatch(weather(fetchedData))
@@ -60,6 +60,7 @@ const Favourite = () => {
   useEffect(() => {
     Searced && navigate('/')
   }, [weatherData])
+
   return (
     <div>
       <div className="favourites">
@@ -170,16 +171,15 @@ const Favourite = () => {
                   setSearced(true)
                 }
                 return (
-                  <div
-                    className="favBodyContainer"
-                    key={i}
-                    onClick={() => {
-                      favHandler()
-                    }}
-                  >
+                  <div className="favBodyContainer" key={i}>
                     <div className="favBody">
                       <div className="favrouriteMobile">
-                        <div className="state">
+                        <div
+                          className="state"
+                          onClick={() => {
+                            favHandler()
+                          }}
+                        >
                           {favPlace &&
                             favPlace.location &&
                             favPlace.location.city}
@@ -198,7 +198,6 @@ const Favourite = () => {
                           </div>
                           <div className="elementTwo">
                             {favPlace &&
-                              favPlace.condition &&
                               favPlace.current_observation &&
                               favPlace.current_observation.condition
                                 .temperature}
@@ -206,13 +205,17 @@ const Favourite = () => {
                           </div>
                           <div className="elementThree">
                             {favPlace &&
-                              favPlace.condition &&
                               favPlace.current_observation &&
                               favPlace.current_observation.condition.text}
                           </div>
                         </div>
                       </div>
-                      <div className="fillHeart">
+                      <div
+                        className="fillHeart"
+                        onClick={(e: any) => {
+                          e.stopPropogation()
+                        }}
+                      >
                         <img
                           src={require('../../assets/icon_favourite_Active.png')}
                           alt=""

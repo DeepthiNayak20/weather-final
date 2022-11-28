@@ -31,7 +31,7 @@
     line-height: 19px;
     text-transform: capitalize;
     width: 12rem;
-    margin-right: 6rem;
+
 }
 
 .cities {
@@ -71,6 +71,7 @@ img.fillHeartImg {
     font-size: 18px;
     letter-spacing: 0;
     line-height: 21px;
+    min-width: max-content;
 }
 
 .threeElements {
@@ -133,7 +134,7 @@ span.deg {
 
 .favColumnReverse {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 1px;
 }
 
@@ -201,4 +202,7 @@ span.deg {
 
 .favrouriteMobile {
     display: flex;
+    justify-content: space-between;
+    width: 69%;
+    gap: 2rem;
 }

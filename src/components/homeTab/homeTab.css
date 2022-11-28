@@ -128,27 +128,7 @@ img.heartImg {
     margin-bottom: 5px;
 }
 
-/* .react-switch {
 
-    display: flex !important;
-
-}
-
-.react-switch-bg {
-    border: 1px solid white !important;
-    background-color: transparent !important;
-
-
-}
-
-.react-switch-handle {
-    height: 40px !important;
-    width: 34px !important;
-    background: white !important;
-
-    top: 0 !important;
-
-} */
 
 .react-switch-bg {
     border: 1px solid white !important;
@@ -165,4 +145,21 @@ img.sunnyImg {
     display: flex;
     flex-direction: column;
     gap: 7rem;
+}
+
+.defaultSearch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66vh;
+    color: white;
+    text-transform: capitalize;
+    font-size: 2rem;
+}
+
+.enterCity {
+    padding: 3rem;
+    background: rebeccapurple;
+    border-radius: 6rem;
+    text-align: center;
 }
